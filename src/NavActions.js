@@ -15,14 +15,42 @@ const StyledNavActions = styled.div`
   }
 `;
 
+const Form = styled.form`
+  color: ${props => props.theme.offWhite};
+  position: relative;
+
+  &:after {
+    content: '\f002';
+    font-family: 'FontAwesome';
+    font-size: 0.9rem;
+    position: absolute;
+    right: 30px;
+    top: 3px;
+  }
+
+  input[type='text'] {
+    background-color: #1f85c7;
+    border: none;
+    border-radius: 10px;
+    color: inherit;
+    max-width: 150px;
+    padding: 2px 10px;
+    position: relative;
+
+    &::placeholder {
+      color: inherit;
+    }
+  }
+`;
+
 const NavActions = () => (
   <StyledNavActions>
     <span>
       <i className="fab fa-twitter" />
     </span>
-    <form>
+    <Form>
       <input type="text" placeholder="Search" />
-    </form>
+    </Form>
     <NavLink href="/">
       <i className="fas fa-envelope" />
       Messages
