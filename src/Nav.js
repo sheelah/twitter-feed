@@ -3,6 +3,8 @@ import styled from 'styled-components/macro';
 import NavLink from './NavLink';
 
 const StyledNav = styled.nav`
+  font-size: 0.9rem;
+
   ul {
     display: flex;
     list-style-type: none;
