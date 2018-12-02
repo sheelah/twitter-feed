@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import NavLink from './NavLink';
 
 const StyledNav = styled.nav`
   ul {
     display: flex;
     list-style-type: none;
+    padding: 0;
   }
 
   li {
@@ -16,16 +18,28 @@ const Nav = () => (
   <StyledNav>
     <ul>
       <li>
-        <a href="#">Home</a>
+        <NavLink href="/" isActive>
+          <i className="fas fa-home" />
+          Home
+        </NavLink>
       </li>
       <li>
-        <a href="#">Connect</a>
+        <NavLink href="/">
+          <i className="fas fa-at" />
+          Connect
+        </NavLink>
       </li>
       <li>
-        <a href="#">Discover</a>
+        <NavLink href="/">
+          <i className="fas fa-hashtag" />
+          Discover
+        </NavLink>
       </li>
       <li>
-        <a href="#">Me</a>
+        <NavLink href="/">
+          <i className="fas fa-user" />
+          Me
+        </NavLink>
       </li>
     </ul>
   </StyledNav>

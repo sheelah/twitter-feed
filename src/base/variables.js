@@ -5,6 +5,7 @@ const variables = {
   // Colors
   blue: '#1da1f2',
   white: '#ffffff',
+  offWhite: '#e3eff7',
 
   // Grid
   maxWidth: '1400px'
