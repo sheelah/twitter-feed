@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components/macro';
 import styledNormalize from 'styled-normalize';
 import Header from './Header';
+import Timeline from './Timeline';
 import variables from './base/variables';
 
 const GlobalStyles = createGlobalStyle`
@@ -12,6 +13,8 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
+    background: ${props => props.theme.lightestGray};
+    color: ${props => props.theme.mediumGray};
     font-family: ${props => props.theme.fontFamily};
     font-size: 1rem;
   }
@@ -20,7 +23,13 @@ const GlobalStyles = createGlobalStyle`
   h2,
   h3,
   h4 {
+    font-weight: normal;
     margin: 0;
+  }
+
+  img {
+    height: auto;
+    max-width: 100%;
   }
 
   ul {
@@ -36,6 +45,7 @@ class App extends Component {
           <GlobalStyles />
           <div className="App">
             <Header />
+            <Timeline />
           </div>
         </>
       </ThemeProvider>
