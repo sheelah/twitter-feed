@@ -10,8 +10,10 @@ const StyledNavActions = styled.div`
   > * {
     padding-right: 20px;
   }
+`;
 
-  span > i {
+const TwitterLogo = styled.span`
+  > i {
     padding-right: 5px;
     font-size: 1.2rem;
   }
@@ -46,26 +48,28 @@ const Form = styled.form`
 `;
 
 const NavActions = () => (
-  <StyledNavActions>
-    <span>
+  <>
+    <TwitterLogo>
       <i className="fab fa-twitter" />
-    </span>
-    <Form>
-      <input type="text" placeholder="Search" />
-    </Form>
-    <NavLink href="/">
-      <i className="fas fa-envelope" />
-      Messages
-    </NavLink>
-    <NavLink href="/">
-      <i className="fas fa-cog" />
-      Settings
-    </NavLink>
-    <NavLink href="/">
-      <i className="far fa-plus-square" />
-      Compose Tweet
-    </NavLink>
-  </StyledNavActions>
+    </TwitterLogo>
+    <StyledNavActions>
+      <Form>
+        <input type="text" placeholder="Search" />
+      </Form>
+      <NavLink href="/">
+        <i className="fas fa-envelope" />
+        Messages
+      </NavLink>
+      <NavLink href="/">
+        <i className="fas fa-cog" />
+        Settings
+      </NavLink>
+      <NavLink href="/">
+        <i className="far fa-plus-square" />
+        Compose Tweet
+      </NavLink>
+    </StyledNavActions>
+  </>
 );
 
 export default NavActions;
