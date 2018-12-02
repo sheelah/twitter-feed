@@ -8,7 +8,10 @@ const variables = {
   offWhite: '#e3eff7',
 
   // Grid
-  maxWidth: '1400px'
+  maxWidth: '1400px',
+
+  // Fonts
+  fontFamily: 'Arimo, Arial, sans-serif'
 };
 
 export default variables;

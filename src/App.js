@@ -7,6 +7,15 @@ import variables from './base/variables';
 const GlobalStyles = createGlobalStyle`
   ${styledNormalize} // Normalize
 
+  html {
+    font-size: 100%;
+  }
+
+  body {
+    font-family: ${props => props.theme.fontFamily};
+    font-size: 1rem;
+  }
+
   h1,
   h2,
   h3,
@@ -22,14 +31,14 @@ const GlobalStyles = createGlobalStyle`
 class App extends Component {
   render() {
     return (
-      <>
-        <GlobalStyles />
-        <ThemeProvider theme={variables}>
+      <ThemeProvider theme={variables}>
+        <>
+          <GlobalStyles />
           <div className="App">
             <Header />
           </div>
-        </ThemeProvider>
-      </>
+        </>
+      </ThemeProvider>
     );
   }
 }
