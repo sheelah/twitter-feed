@@ -8,6 +8,7 @@ const variables = {
   offWhite: '#e3eff7',
   lightestGray: '#efefef',
   lightGray: '#dcdcdc',
+  gray: '#cecdcd',
   mediumGray: '#a2a0a0',
   darkGray: '#8a8989',
   darkestGray: '#7d7d7d',
