@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import TimelineAside from './TimelineAside';
@@ -23,19 +23,44 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const Timeline = ({ match }) => {
-  const username = match.url.split('/')[1];
-  const nextUser = username === 'jane_j' ? 'john_g' : 'jane_j';
+class Timeline extends Component {
+  state = {
+    username: ''
+  };
 
-  return (
-    <TimelineContainer>
-      <TimelineAside username={username} />
-      <TimelineTweets username={username} />
-      <div>
-        <StyledLink to={`/${nextUser}`}>Next user</StyledLink>
-      </div>
-    </TimelineContainer>
-  );
-};
+  updateUsername = this.updateUsername.bind(this);
+
+  componentDidMount() {
+    this.updateUsername();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.url !== this.props.match.url) {
+      this.updateUsername();
+    }
+  }
+
+  updateUsername() {
+    const username = this.props.match.url.split('/')[1];
+    this.setState({ username });
+  }
+
+  render() {
+    const { username } = this.state;
+    if (username === '') return null;
+
+    const nextUser = username === 'jane_j' ? 'john_g' : 'jane_j';
+
+    return (
+      <TimelineContainer>
+        <TimelineAside username={username} />
+        <TimelineTweets username={username} />
+        <div>
+          <StyledLink to={`/${nextUser}`}>Next user</StyledLink>
+        </div>
+      </TimelineContainer>
+    );
+  }
+}
 
 export default Timeline;

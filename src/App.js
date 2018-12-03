@@ -10,6 +10,7 @@ import styledNormalize from 'styled-normalize';
 import Header from './Header';
 import NotFound from './NotFound';
 import Timeline from './Timeline';
+import TimelineData from './TimelineData';
 import variables from './base/variables';
 
 const GlobalStyles = createGlobalStyle`
@@ -53,17 +54,19 @@ class App extends Component {
           <>
             <GlobalStyles />
             <div className="App">
-              <Header />
-              <Route
-                exact
-                path="/"
-                render={() => <Redirect to={{ pathname: '/jane_j' }} />}
-              />
-              <Switch>
-                <Route exact path="/jane_j" component={Timeline} />
-                <Route exact path="/john_g" component={Timeline} />
-                <Route component={NotFound} />
-              </Switch>
+              <TimelineData>
+                <Header />
+                <Route
+                  exact
+                  path="/"
+                  render={() => <Redirect to={{ pathname: '/jane_j' }} />}
+                />
+                <Switch>
+                  <Route exact path="/jane_j" component={Timeline} />
+                  <Route exact path="/john_g" component={Timeline} />
+                  <Route component={NotFound} />
+                </Switch>
+              </TimelineData>
             </div>
           </>
         </ThemeProvider>
