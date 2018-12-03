@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import Link from './Link';
-import Jane from './images/jane.jpg';
 
 const UserProfile = styled.div`
   border: 1px solid ${props => props.theme.lightGray};
@@ -83,10 +82,10 @@ const AsideSection = styled.div`
   }
 `;
 
-const TimelineAside = () => (
+const TimelineAside = ({ username }) => (
   <aside>
     <UserProfile>
-      <img src={Jane} alt="" />
+      <img src={require(`./images/${username}.jpg`)} alt="" />
       <UserStats>
         <div className="stat">
           <h4>Tweets</h4>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styled from 'styled-components/macro';
-import tweetData from './data/jane_j.json';
 import Tweet from './Tweet';
 
 const StyledTimelineTweets = styled.main`
@@ -24,8 +23,15 @@ const StyledTimelineTweets = styled.main`
 
 class TimelineTweets extends Component {
   state = {
-    tweets: tweetData
+    tweets: []
   };
+
+  componentDidMount() {
+    // Fetch JSON data
+    // We can't do this sooner since the path is based on the URL.
+    const tweetData = require(`./data/${this.props.username}.json`);
+    this.setState({ tweets: tweetData });
+  }
 
   render() {
     const { tweets } = this.state;

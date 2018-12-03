@@ -12,11 +12,15 @@ const TimelineContainer = styled.div`
   padding: 20px 0;
 `;
 
-const Timeline = () => (
-  <TimelineContainer>
-    <TimelineAside />
-    <TimelineTweets />
-  </TimelineContainer>
-);
+const Timeline = ({ match }) => {
+  const username = match.url.split('/')[1];
+
+  return (
+    <TimelineContainer>
+      <TimelineAside username={username} />
+      <TimelineTweets username={username} />
+    </TimelineContainer>
+  );
+};
 
 export default Timeline;

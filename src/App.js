@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
+import {
+  Redirect,
+  Route,
+  Switch,
+  BrowserRouter as Router
+} from 'react-router-dom';
 import { createGlobalStyle, ThemeProvider } from 'styled-components/macro';
 import styledNormalize from 'styled-normalize';
 import Header from './Header';
+import NotFound from './NotFound';
 import Timeline from './Timeline';
 import variables from './base/variables';
 
@@ -41,15 +48,26 @@ const GlobalStyles = createGlobalStyle`
 class App extends Component {
   render() {
     return (
-      <ThemeProvider theme={variables}>
-        <>
-          <GlobalStyles />
-          <div className="App">
-            <Header />
-            <Timeline />
-          </div>
-        </>
-      </ThemeProvider>
+      <Router>
+        <ThemeProvider theme={variables}>
+          <>
+            <GlobalStyles />
+            <div className="App">
+              <Header />
+              <Route
+                exact
+                path="/"
+                render={() => <Redirect to={{ pathname: '/jane_j' }} />}
+              />
+              <Switch>
+                <Route exact path="/jane_j" component={Timeline} />
+                <Route exact path="/john_g" component={Timeline} />
+                <Route component={NotFound} />
+              </Switch>
+            </div>
+          </>
+        </ThemeProvider>
+      </Router>
     );
   }
 }
