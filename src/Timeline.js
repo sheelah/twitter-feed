@@ -5,6 +5,7 @@ import TimelineTweets from './TimelineTweets';
 
 const TimelineContainer = styled.div`
   display: grid;
+  grid-gap: 20px;
   grid-template-columns: 400px 1fr;
   margin: 0 auto;
   max-width: 1200px;

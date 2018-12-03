@@ -10,6 +10,7 @@ const variables = {
   lightGray: '#dcdcdc',
   mediumGray: '#a2a0a0',
   darkGray: '#8a8989',
+  darkestGray: '#7d7d7d',
 
   // Grid
   maxWidth: '1400px',
