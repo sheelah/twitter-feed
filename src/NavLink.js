@@ -14,8 +14,13 @@ const StyledNavLink = styled.a`
   }
 `;
 
-const NavLink = ({ children, href, isActive = false }) => (
-  <StyledNavLink href={href} isActive={isActive}>
+const NavLink = ({ children, href, ariaLabel, title, isActive = false }) => (
+  <StyledNavLink
+    href={href}
+    isActive={isActive}
+    aria-label={ariaLabel}
+    title={title}
+  >
     {children}
   </StyledNavLink>
 );

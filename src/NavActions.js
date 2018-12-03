@@ -56,17 +56,14 @@ const NavActions = () => (
       <Form>
         <input type="text" placeholder="Search" />
       </Form>
-      <NavLink href="/">
-        <i className="fas fa-envelope" />
-        Messages
+      <NavLink href="/" ariaLabel="View messages" title="View messages">
+        <i aria-hidden className="fas fa-envelope" />
       </NavLink>
-      <NavLink href="/">
-        <i className="fas fa-cog" />
-        Settings
+      <NavLink href="/" ariaLabel="View settings" title="View settings">
+        <i aria-hidden className="fas fa-cog" />
       </NavLink>
-      <NavLink href="/">
-        <i className="far fa-plus-square" />
-        Compose Tweet
+      <NavLink href="/" ariaLabel="Compose a tweet" title="Compose a tweet">
+        <i aria-hidden className="far fa-plus-square" />
       </NavLink>
     </StyledNavActions>
   </>
