@@ -1,17 +1,38 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 
 export const TimelineContext = React.createContext({
   tweets: {},
   newTweet: '',
   handleAddTweets: () => {},
-  handleAddTweet: () => {}
+  handleAddTweet: () => {},
+  handleTweetInput: () => {},
+  resetTweetForm: () => {}
 });
 
 class TimelineData extends Component {
   handleAddTweet = this.handleAddTweet.bind(this);
   handleAddTweets = this.handleAddTweets.bind(this);
+  handleTweetInput = this.handleTweetInput.bind(this);
+  resetTweetForm = this.resetTweetForm.bind(this);
 
-  handleAddTweet(username, tweet) {}
+  handleAddTweet(username, tweet) {
+    const userTweets = this.state.tweets[username] || [];
+    const newTweet = {
+      created_at: moment().format('ddd MMM D HH:mm:ss ZZ YYYY'),
+      id: moment().toString(), // We need a random string for uniqueness
+      text: tweet,
+      user: {
+        name: userTweets[0].user.name || 'Jane Bot',
+        screen_name: username,
+        profile_image_url_https: `/images/${username}-thumb.jpg`
+      }
+    };
+
+    const allUserTweets = userTweets.concat(newTweet);
+    const tweets = { ...this.state.tweets, [username]: allUserTweets };
+    this.setState({ tweets });
+  }
 
   handleAddTweets(username, tweets) {
     const existingTweets = this.state.tweets;
@@ -23,11 +44,21 @@ class TimelineData extends Component {
     this.setState({ tweets: allTweets });
   }
 
+  handleTweetInput(e) {
+    this.setState({ newTweet: e.target.value });
+  }
+
+  resetTweetForm() {
+    this.setState({ newTweet: '' });
+  }
+
   state = {
     tweets: {},
     newTweet: '',
     handleAddTweet: this.handleAddTweet,
-    handleAddTweets: this.handleAddTweets
+    handleAddTweets: this.handleAddTweets,
+    handleTweetInput: this.handleTweetInput,
+    resetTweetForm: this.resetTweetForm
   };
 
   render() {

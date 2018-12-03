@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components/macro';
 import Link from './Link';
+import { TimelineContext } from './TimelineData';
 
 const UserProfile = styled.div`
   border: 1px solid ${props => props.theme.lightGray};
@@ -82,59 +83,84 @@ const AsideSection = styled.div`
   }
 `;
 
-const TimelineAside = ({ username }) => (
-  <aside>
-    <UserProfile>
-      <img src={require(`./images/${username}.jpg`)} alt="" />
-      <UserStats>
-        <div className="stat">
-          <h4>Tweets</h4>
-          <span>304</span>
-        </div>
-        <div className="stat">
-          <h4>Following</h4>
-          <span>102</span>
-        </div>
-        <div className="stat">
-          <h4>Followers</h4>
-          <span>11.6K</span>
-        </div>
-      </UserStats>
-      <ComposeTweetForm>
-        <input type="text" placeholder="Compose new Tweet..." />
-      </ComposeTweetForm>
-    </UserProfile>
-    <AsideSection block>
-      <h2>Trends</h2>
-      <Link href="/" color="blue">
-        #Thankful
-      </Link>
-      <Link href="/" color="blue">
-        #Thanksgiving
-      </Link>
-      <Link href="/" color="blue">
-        Disney
-      </Link>
-      <Link href="/" color="blue">
-        #Thankful
-      </Link>
-      <Link href="/" color="blue">
-        #SerenaWilliams
-      </Link>
-      <Link href="/" color="blue">
-        #Holidays
-      </Link>
-    </AsideSection>
-    <AsideSection inline>
-      <span>{`\u00A9 ${new Date().getFullYear()} Twitter`}</span>
-      <Link href="/">About</Link>
-      <Link href="/">Help</Link>
-      <Link href="/">Terms</Link>
-      <Link href="/">Privacy</Link>
-      <Link href="/">Cookies</Link>
-      <Link href="/">Press</Link>
-    </AsideSection>
-  </aside>
-);
+class TimelineAside extends Component {
+  static contextType = TimelineContext;
+  handleFormSubmit = this.handleFormSubmit.bind(this);
+
+  handleFormSubmit(e) {
+    e.preventDefault();
+
+    const { handleAddTweet, resetTweetForm } = this.context;
+    handleAddTweet(this.props.username, this.context.newTweet);
+
+    // Clear input field
+    resetTweetForm();
+  }
+
+  render() {
+    const { username } = this.props;
+    const { newTweet, handleTweetInput } = this.context;
+
+    return (
+      <aside>
+        <UserProfile>
+          <img src={require(`./images/${username}.jpg`)} alt="" />
+          <UserStats>
+            <div className="stat">
+              <h4>Tweets</h4>
+              <span>304</span>
+            </div>
+            <div className="stat">
+              <h4>Following</h4>
+              <span>102</span>
+            </div>
+            <div className="stat">
+              <h4>Followers</h4>
+              <span>11.6K</span>
+            </div>
+          </UserStats>
+          <ComposeTweetForm onSubmit={this.handleFormSubmit}>
+            <input
+              type="text"
+              placeholder="Compose new Tweet..."
+              value={newTweet}
+              onChange={handleTweetInput}
+            />
+          </ComposeTweetForm>
+        </UserProfile>
+        <AsideSection block>
+          <h2>Trends</h2>
+          <Link href="/" color="blue">
+            #Thankful
+          </Link>
+          <Link href="/" color="blue">
+            #Thanksgiving
+          </Link>
+          <Link href="/" color="blue">
+            Disney
+          </Link>
+          <Link href="/" color="blue">
+            #Thankful
+          </Link>
+          <Link href="/" color="blue">
+            #SerenaWilliams
+          </Link>
+          <Link href="/" color="blue">
+            #Holidays
+          </Link>
+        </AsideSection>
+        <AsideSection inline>
+          <span>{`\u00A9 ${new Date().getFullYear()} Twitter`}</span>
+          <Link href="/">About</Link>
+          <Link href="/">Help</Link>
+          <Link href="/">Terms</Link>
+          <Link href="/">Privacy</Link>
+          <Link href="/">Cookies</Link>
+          <Link href="/">Press</Link>
+        </AsideSection>
+      </aside>
+    );
+  }
+}
 
 export default TimelineAside;
