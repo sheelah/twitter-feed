@@ -29,7 +29,8 @@ class TimelineData extends Component {
       }
     };
 
-    const allUserTweets = userTweets.concat(newTweet);
+    // Add the new tweet to the front of the array
+    const allUserTweets = [newTweet].concat(userTweets);
     const tweets = { ...this.state.tweets, [username]: allUserTweets };
     this.setState({ tweets });
   }
