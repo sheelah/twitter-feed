@@ -15,6 +15,12 @@ You will also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.<br>
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
+## Notes
+
+- There are 2 mock users with timeline data coming from JSON files.
+- To toggle between the 2 user timelines, click the "next user" link on the right side of the UI.
+- The sidebar's "compose new tweet" web form is functional and you can add a new tweet to the user's timeline from there.
+
 ## Deployment
 
 `npm run build`
